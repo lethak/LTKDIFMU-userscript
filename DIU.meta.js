@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2016.1.5b
+// @version     2016.1.6
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     http://www.di.fm*
