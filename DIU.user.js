@@ -19,7 +19,7 @@ setInterval(function(){
 di.app.timedAlerts.stop();
 
 // Ads
-AudioAddict.WP.AdManager.providers = {}
+//AudioAddict.WP.AdManager.providers = {}
 AudioAddict.webplayer.adblocks.gracePeriodTimer_.finish_();
 
 // Ads panel
