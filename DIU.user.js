@@ -14,9 +14,17 @@
 (function () {
 
 setInterval(function(){
+
+// AFK MUTE
 di.app.timedAlerts.stop();
+
+// Ads
 AudioAddict.WP.AdManager.providers = {}
 AudioAddict.webplayer.adblocks.gracePeriodTimer_.finish_();
+
+// Ads panel
+jQuery('#panel-ad > div.panel-header > div.icon-cross3.panel-close.icon').trigger('click');
+
 },2000);
 
 }) ()
