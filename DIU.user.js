@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        Rednote
-// @namespace   rednote
-// @version     0.4.0
+// @name        Digitally Imported Userscript
+// @namespace   LTKDIFMU
+// @version     2016.1.5
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     http://www.di.fm*
