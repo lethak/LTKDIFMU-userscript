@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2016.1.30
+// @version     2016.1.31
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     http://www.di.fm*
@@ -20,8 +20,13 @@ di.app.timedAlerts.stop();
 
 // Ads
 //AudioAddict.WP.AdManager.providers = {}
-//AudioAddict.webplayer.adblocks.gracePeriodTimer_.finish_();
+//AudioAddict.Ad.adswizz = {};
+AudioAddict.WP.wp.adManager.stop();
+AudioAddict.webplayer.adblocks.gracePeriodTimer_.finish_();
 AudioAddict.webplayer.adblocks.gracePeriodTimer_.stop();
+AudioAddict.webplayer.adblocks.adEnd_();
+AudioAddict.webplayer.adblocks.adBlockEnd();
+
 
 // Ads panel
 jQuery('#panel-ad > div.panel-header > div.icon-cross3.panel-close.icon').trigger('click');
