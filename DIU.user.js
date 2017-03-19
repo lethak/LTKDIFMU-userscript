@@ -11,7 +11,7 @@
 // @icon        http://i.imgur.com/7yj2PGY.png
 // @grant       none
 // ==/UserScript==
-(function () {
+di.eventbus.on('page:loaded', function () {
     setInterval(function(){
         // Member Premium Emulator (less ads)
         try{
@@ -139,4 +139,4 @@
         }
 
     }, 1000);
-})();
+});
