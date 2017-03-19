@@ -19,7 +19,7 @@ setTimeout(function () {
             di.app.MemberApp.Controller.models.member.attributes.confirmed = true;
             di.app.MemberApp.Controller.models.member.attributes.confirmed_at = di.app.MemberApp.Controller.models.member.attributes.created_at;
         }catch(err){}
-        di.app.module("WebplayerApp.IcecastPlayer.player.member").getAccess = function() { console.warn('[DIUserscript] member.getAccess: %s', 'premium'); return "premium" };
+        di.app.module("WebplayerApp.IcecastPlayer.player.member").getAccess = function() { console.warn('[DIUserscript] member.getAccess: %s', 'premium'); return "premium"; };
 
 
     }, 100);
