@@ -110,7 +110,7 @@ setTimeout(function () {
             //
             //NS("AudioAddict.WP.AdManager.providers").default = defaultProvider;
             //NS("AudioAddict.WP.AdManager.providers").internal = null;
-            //NS("AudioAddict.WP.AdManager.providers").adswizz = null;
+            NS("AudioAddict.WP.AdManager.providers").adswizz = null;
 
             //NS("AudioAddict.WP.AdManager").providers = null;
             //NS("AudioAddict.WP.AdManager.providers");
