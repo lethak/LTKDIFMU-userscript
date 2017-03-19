@@ -92,25 +92,25 @@ di.eventbus.on('page:loaded', function () {
                 di.app.WebplayerApp.IcecastPlayer.player.unMute();
             });
 
-            // Emptying ad providers
-            var defaultProvider = function(e){
-                if (this.type = "default", this.isReady = e.yes, this.isExternal = e.no, this.hasBanner = e.yes, this.begin = function() {
-                        return console.warn("[DIUserscript] AudioAddict.WP.AdProvider_X: Beginning ad"), t.show(), this
-                    }, this.end = function() {
-                        return console.warn("[DIUserscript] AudioAddict.WP.AdProvider_X: Ending ad"), t.hide(), this
-                    }, "undefined" == typeof e)
-                    throw "[DIUserscript] AudioAddict.WP.AdProvider_X: FATAL: Ad manager reference object not provided";
-                var t = $("#adprovider-default").appendTo(e.canvas()).hide()
-            };
-
-
-            //di.eventbus.trigger = function (e, tpl, tplB){
-            //    console.warn('EVENTBUS', e);
+            //// Emptying ad providers
+            //var defaultProvider = function(e){
+            //    if (this.type = "default", this.isReady = e.yes, this.isExternal = e.no, this.hasBanner = e.yes, this.begin = function() {
+            //            return console.warn("[DIUserscript] AudioAddict.WP.AdProvider_X: Beginning ad"), t.show(), this
+            //        }, this.end = function() {
+            //            return console.warn("[DIUserscript] AudioAddict.WP.AdProvider_X: Ending ad"), t.hide(), this
+            //        }, "undefined" == typeof e)
+            //        throw "[DIUserscript] AudioAddict.WP.AdProvider_X: FATAL: Ad manager reference object not provided";
+            //    var t = $("#adprovider-default").appendTo(e.canvas()).hide()
             //};
-
-            NS("AudioAddict.WP.AdManager.providers").default = defaultProvider;
-            NS("AudioAddict.WP.AdManager.providers").internal = null;
-            NS("AudioAddict.WP.AdManager.providers").adswizz = null;
+            //
+            //
+            ////di.eventbus.trigger = function (e, tpl, tplB){
+            ////    console.warn('EVENTBUS', e);
+            ////};
+            //
+            //NS("AudioAddict.WP.AdManager.providers").default = defaultProvider;
+            //NS("AudioAddict.WP.AdManager.providers").internal = null;
+            //NS("AudioAddict.WP.AdManager.providers").adswizz = null;
 
             //NS("AudioAddict.WP.AdManager").providers = null;
             //NS("AudioAddict.WP.AdManager.providers");
