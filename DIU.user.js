@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2017.3.20
+// @version     2017.3.24
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     http://www.di.fm*
@@ -11,134 +11,152 @@
 // @icon        http://i.imgur.com/7yj2PGY.png
 // @grant       none
 // ==/UserScript==
-setTimeout(function () {
-    setInterval(function(){
-        // Member Premium Emulator (less ads)
-        try{
-            di.app.MemberApp.Controller.models.member.attributes.user_type = "premium";
-            di.app.MemberApp.Controller.models.member.attributes.confirmed = true;
-            di.app.MemberApp.Controller.models.member.attributes.confirmed_at = di.app.MemberApp.Controller.models.member.attributes.created_at;
-        }catch(err){}
-        di.app.module("WebplayerApp.IcecastPlayer.player.member").getAccess = function() { console.warn('[DIUserscript] member.getAccess: %s', 'premium'); return "premium"; };
+(function(){
+
+    console.warn('[DIUserscript] Initializing');
+
+    window.trackCandidate = null;
 
 
-    }, 100);
-    setInterval(function(){
+    var defineProp = function(obj, propName, propValue){
+        delete obj[propName];
+        Object.defineProperty(obj, propName, {
+            value: propValue,
+            writable : false,
+            enumerable : true,
+            configurable : false
+        });
+        return obj;
+    };
 
-        try{
-            var WebplayerApp = di.app.module("WebplayerApp");
+    var WebplayerApp = di.app.module("WebplayerApp");
 
+    // Ads Adblocks...
+    defineProp(WebplayerApp.Ads.Adblocks, 'logger', new di.log.Console("(DIUserscript) WebplayerApp.Ads.Adblocks "));
 
-            // Ads Blocks
-            WebplayerApp.Ads.Adblocks.logger = new di.log.Console("WebplayerApp.Ads.Adblocks [DIUserscript]");
-            WebplayerApp.Ads.Adblocks.onAdBlockEnd = function(){
-                console.warn('[DIUserscript] Adblocks.onAdBlockEnd');
-                this.adblockActive = !1;
-                di.eventbus.trigger("webplayer:adblock:end");
-            };
-            //WebplayerApp.Ads.Adblocks.onAdBegin = function(e, t) {
-            //    console.warn('[DIUserscript] Adblocks.onAdBegin: void');
-            //    return void 0;
-            //};
-            WebplayerApp.Ads.Adblocks.adHasVisual = function(){
-                console.warn('[DIUserscript] Adblocks.adHasVisual: false');
-                return false;
-            };
-            WebplayerApp.Ads.Adblocks._events.start[0] = function(e){
-                console.warn('[DIUserscript] Adblocks._events.start: void 0; (premium)');
-                return void 0;
-            };
+    defineProp(WebplayerApp.Ads.Adblocks, 'adHasVisual', function(){
+        console.warn('[DIUserscript] Ads.Adblocks.adHasVisual: false');
+        return false; // Prevents the player popup from displaying during 'Sponsored Message' ad
+    });
 
-            di.app.WebplayerApp.Ads.Supervisor._events.start[0].callback = function(e){
-                console.warn('[DIUserscript] Ads.Supervisor._events.start: void 0; (premium)');
-                return void 0;
-            };
+    // Ads Supervisor...
+    NS('di.app.WebplayerApp.Ads.Supervisor');
+    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'logger',  new di.log.Console("(DIUserscript) WebplayerApp.Ads.Supervisor "));
 
+    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'selectAds_', function(e){
+        console.warn('[DIUserscript] Ads.Supervisor.selectAds_: []', this);
+        return [];
+    });
+    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'requestAd', function(e){
+        console.warn('[DIUserscript] Ads.Supervisor.requestAd: false');
+        return jQuery.Deferred().reject().promise();
+    });
+    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'eligibleForPreroll', function(){
+        console.warn('[DIUserscript] Ads.Supervisor.eligibleForPreroll: false');
+        return false;
+    });
+    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'eligibleForMidroll', function(){
+        console.warn('[DIUserscript] Ads.Supervisor.eligibleForMidroll: false');
+        return false;
+    });
+    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'startAd', function(){
+        console.warn('[DIUserscript] Ads.Supervisor.startAd: void 0');
+        return jQuery.Deferred().reject().promise();
+    });
 
-            // Ads Supervisor
-            WebplayerApp.Ads.Supervisor.logger = new di.log.Console("WebplayerApp.Ads.Supervisor [DIUserscript]");
-            WebplayerApp.Ads.Supervisor.supervise = function(e){};
-            WebplayerApp.Ads.Supervisor.eligibleForPreroll = function(){
-                console.warn('[DIUserscript] Ads.Supervisor.eligibleForPreroll: false');
-                return false;
-            };
-            WebplayerApp.Ads.Supervisor.eligibleForMidroll = function(){
-                console.warn('[DIUserscript] Ads.Supervisor.eligibleForMidroll: false');
-                return false;
-            };
-            WebplayerApp.Ads.Supervisor.requestAd = function(e){
-                console.warn('[DIUserscript] Ads.Supervisor.requestAd: resolved promise');
-                return jQuery.Deferred().resolve().promise();
-            };
-            WebplayerApp.Ads.Supervisor.selectAds_ = function(e){
-                console.warn('[DIUserscript] Ads.Supervisor.selectAds_: []');
-                return [];
-            };
-            WebplayerApp.Ads.Supervisor.startAd = function(e){
-                console.warn('[DIUserscript] Ads.Supervisor.selectAds_: []');
-                //return jQuery.Deferred().resolve().promise();
-            };
+    // AdManagers !
+    /*
+     (AudioAddict.WP.wp.adManager) instanceof (window.AdManager) // true
+     (AudioAddict.WP.AdManager) instanceof (window.AdManager) // false, object
+     (AudioAddict.WP.wp.adManager) // object
+     */
 
-            // Silence ads whenever they get played ...
-            jQuery(document).off("ad-begin.diu").on("ad-begin.diu", function(e, x){
-                console.warn('[DIUserscript] Ad begin (muting)', e, x);
-                //jQuery(document).trigger("metadata-track-complete", [jQuery.extends(x, {duration: 1000, ended: x.started+1000, length: 1})]);
-                //AudioAddict.WP.wp.mute();
-                di.app.WebplayerApp.IcecastPlayer.player.mute();
-            });
-            jQuery(document).off("ad-end.diu").on("ad-end.diu", function(e, x){
-                console.warn('[DIUserscript] Ad end (unmuting)', e, x);
-                //AudioAddict.WP.wp.unMute();
-                di.app.WebplayerApp.IcecastPlayer.player.unMute();
-            });
-
-            //// Emptying ad providers
-            //var defaultProvider = function(e){
-            //    if (this.type = "default", this.isReady = e.yes, this.isExternal = e.no, this.hasBanner = e.yes, this.begin = function() {
-            //            return console.warn("[DIUserscript] AudioAddict.WP.AdProvider_X: Beginning ad"), t.show(), this
-            //        }, this.end = function() {
-            //            return console.warn("[DIUserscript] AudioAddict.WP.AdProvider_X: Ending ad"), t.hide(), this
-            //        }, "undefined" == typeof e)
-            //        throw "[DIUserscript] AudioAddict.WP.AdProvider_X: FATAL: Ad manager reference object not provided";
-            //    var t = $("#adprovider-default").appendTo(e.canvas()).hide()
-            //};
-            //
-            //
-            ////di.eventbus.trigger = function (e, tpl, tplB){
-            ////    console.warn('EVENTBUS', e);
-            ////};
-            //
-            //NS("AudioAddict.WP.AdManager.providers").default = defaultProvider;
-            //NS("AudioAddict.WP.AdManager.providers").internal = null;
-            NS("AudioAddict.WP.AdManager.providers").adswizz = null;
-
-            //NS("AudioAddict.WP.AdManager").providers = null;
-            //NS("AudioAddict.WP.AdManager.providers");
-            //di.app.module("WebplayerApp.app.webplayer").submodules.ads = null;
-            //di.app.webplayer.ads = null;
-
-
-            // //NS("AudioAddict.WP.wp").initAdManager = function(){ return null;};
-            // //di.app.WebplayerApp.Ads.Provider = null;
-            // //AudioAddict.WP.wp.adManager.stop();
-            // //AudioAddict.WP.adManager = null;
-            // //AudioAddict.WP.wp.adManager = null;
-            // //NS("AudioAddict.WP").AdManager = null;
-            // //NS("AudioAddict.WP").AdProvider = null;
-            // //jQuery('[id^="adprovider"]').remove();
-
-            // Removing Premium ad display
-            jQuery('.premium-upsell').remove();
-
-            // Breaking anti AFK system
-            di.app.timedAlerts.stop();
-            di.eventbus.trigger('user:active');
-            $('.modal-btn.continue').click();
-            $('.modal-btn.countdown-btn').click();
-
-        } catch(err){
-            console.error('[DIUserscript] An error occured: %s', err.message, err);
+    // Silence ads whenever they get played ...
+    jQuery(document).off("ad-begin.diu").on("ad-begin.diu", function(e, x){
+        console.warn('[DIUserscript] Ad begin (muting)', e, x);
+        if(trackCandidate!==null){
+            //AudioAddict.WP.wp.adapter.load(trackCandidate);
         }
+        AudioAddict.WP.wp.tempMute();
+    });
+    jQuery(document).off("ad-end.diu").on("ad-end.diu", function(e, x){
+        console.warn('[DIUserscript] Ad end (unmuting)', e, x);
+        AudioAddict.WP.wp.tempUnMute();
+    });
 
+    // WebPlayer...
+
+    /*
+     (AudioAddict.WP.wp) instanceof (AudioAddict.WP.WebPlayer) //true
+     (AudioAddict.WP.wp.channel) instanceof (window.Channel) // true
+     */
+
+    NS('AudioAddict.WP.WebPlayer').prototype.logger = new di.log.Console("(DIUserscript) AudioAddict.WP.WebPlayer");
+
+    // Member...
+    defineProp(window, 'Member', function(e) {
+        if (this.getAccess = function() {
+                console.warn('[DIUserscript] Member getAccess (premium) instead of ', n);
+                return 'premium';
+            }
+                ,
+                this.setAccess = function(e) {
+                    e != n && (n = e,
+                        $(document).trigger("member-access", 'premium'));
+                }
+                ,
+                this.getListenKey = function() {
+                    return i;
+                }
+                ,
+                this.setListenKey = function(e) {
+                    e != i && (i = e ? e : "",
+                        $(document).trigger("member-listenkey", e));
+                }
+                ,
+                this.getSpeed = function() {
+                    var e = t.wp.streamlist.getSpeeds(t.wp.member.getAccess(), "webplayer");
+                    return e[r] && "object" == typeof e[r] ? r : ($.log(LogPrefix() + "(DIUserscript) AudioAddict.WP.Member: Current speed {" + r + "} is invalid; defaulting to first available {" + Object.keys(e)[0] + "}"),
+                        r = Object.keys(e)[0]);
+                }
+                ,
+            "undefined" == typeof e)
+            throw "(DIUserscript) AudioAddict.WP.Member: FATAL: No parameters provided";
+        if ("premium" == e.access && !e.listenKey)
+            throw "(DIUserscript) AudioAddict.WP.Member: FATAL: listenKey is required for Premium users";
+        var t = NS("AudioAddict.WP")
+            , n = "premium"/*e.access*/
+            , i = e.listenKey ? e.listenKey : ""
+            , r = e.speed;
+        $.log(LogPrefix() + "(DIUserscript) AudioAddict.WP.Member: Initialized");
+    });
+
+
+    setInterval(function(){
+        // Removing Premium ad display
+        jQuery('.premium-upsell').remove();
+
+        // Breaking anti AFK system
+        di.eventbus.trigger('user:active');
+        di.app.timedAlerts.stop();
+        $('.modal-btn.continue').click();
+        $('.modal-btn.countdown-btn').click();
     }, 1000);
-}, 2000);
+
+
+
+    // R&D
+    //jQuery('#player').get(0)._stop();
+
+    //jQuery(document).on('add-new', function(e, d){
+    //    console.warn('[DIUserscript] on add-new (nope)', e, d);
+    //});
+
+    // Trying to bypass audio ads
+    jQuery(document).off("metadata-load.diu").on("metadata-load.diu", function(e,d){
+        console.warn('[DIUserscript] metadata-load.diu trackCandidate', e, d);
+        trackCandidate = d;
+    });
+
+
+})();
