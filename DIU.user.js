@@ -135,12 +135,14 @@
     setInterval(function(){
         // Removing Premium ad display
         jQuery('.premium-upsell').remove();
+        jQuery('.menu-item.go-premium').remove();
+        jQuery('.sidebar-ad-component').remove();
 
         // Breaking anti AFK system
         di.eventbus.trigger('user:active');
         di.app.timedAlerts.stop();
-        $('.modal-btn.continue').click();
-        $('.modal-btn.countdown-btn').click();
+        jQuery('.modal-btn.continue').click();
+        jQuery('.modal-btn.countdown-btn').click();
     }, 1000);
 
 
