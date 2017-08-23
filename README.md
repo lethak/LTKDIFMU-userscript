@@ -5,10 +5,10 @@ userscript aimed to minimize and block ads
 
 ## Features
 
-* Prevents **almost all** ads to reach your ears by bypassing them.
-* Removes some over-intrusive "premium" ad menu entry, popup and panel on all pages.
-* Breaks the anti-AFK system, so you can let the music run for hours without any human interaction.
-* Breaks the anti-adblocker system.
+* Preventing **almost all** ads to reach your ears by bypassing them.
+* Removing some over-intrusive "premium" ad menu entry, popup and panel on all pages.
+* Breaking the anti-AFK system, so you can let the music run for hours without any human interaction.
+* Breaking the anti-adblocker system, so you can enjoy the music with AdBlock or AdblockPlus enabled.
 * Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
 
 ## Installation

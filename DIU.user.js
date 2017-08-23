@@ -54,6 +54,17 @@
         }
     };
 
+    var redefineCommands = function(){
+        console.warn('[DIUserscript] redefineCommands');
+
+        // Go away
+        defineProp(di.app.commands._wreqrHandlers['adblocker:enforceWall'], 'callback', function () {
+            console.warn('[DIUserscript] adblocker:enforceWall', 'rejected');
+            return jQuery.Deferred().reject().promise();
+        });
+
+    };
+
     var redefineReqres = function(){
         console.warn('[DIUserscript] redefineReqres');
 
@@ -103,19 +114,20 @@
                 return false;
             });
 
+
+            // Always judging people ...
+            defineProp(di.app.reqres._wreqrHandlers['current_user:isPremium'], 'callback', function () {
+                console.warn('[DIUserscript] current_user:isPremium', true);
+                return true;
+            });
+
+            // Lets pretend
             var userType = di.app.reqres.request('current_user:type'); // guest|public|premium
-            if (userType === 'public') {
-
-                // Always judging people ...
-                defineProp(di.app.reqres._wreqrHandlers['current_user:isPremium'], 'callback', function () {
-                    console.warn('[DIUserscript] current_user:isPremium', true);
-                    return true;
-                });
-
-                // Lets pretend
+            console.warn('[DIUserscript] current_user:type ORIGINAL ', userType);
+            if (userType === 'guest') {
                 defineProp(di.app.reqres._wreqrHandlers['current_user:type'], 'callback', function () {
                     console.warn('[DIUserscript] current_user:type', 'premium');
-                    return 'premium';
+                    return 'public';
                 });
             }
         }
@@ -129,7 +141,9 @@
     document.addEventListener("DOMContentLoaded", function(event) {
         console.warn('[DIUserscript] window.document ready');
 
+        redefineCommands();
         redefineReqres();
+        adSilencer();
 
         setTimeout(function(){
             // // Improved webplayer quality (3 = High) (disabled, Free Listeners can change it via their account settings)
@@ -140,7 +154,6 @@
             //     di.app.commands.execute('message:success', 'Webplayer audio quality is now: '+audioQuality.name+' '+audioQuality.content_quality.name+' '+audioQuality.content_format.name);
             // }, 2000);
 
-            adSilencer();
             redefineTimers();
             di.app.commands.execute('message:notice', 'DIUserscript is enabled ! enjoy free uninterrupted music');
         }, 2000);
@@ -157,6 +170,40 @@
             try { di.app.vent.trigger('user:active'); } catch(err) { console.error('(DIUserscript) : '+err.message); }
             try { di.app.timedAlerts.stop(); } catch(err) { console.error('(DIUserscript) : '+err.message); }
         }, 1000);
+
+
+
+        // Fuck BlockAdBlock
+        var BlockAdBlock = function(options) {
+            BlockAdBlock.prototype.setOption = function() {
+                console.warn('[DIUserscript] (BlockAdBlock) setOption FuckBlockAdBlock', this);
+                return this;
+            };
+            BlockAdBlock.prototype.check = function() {
+                console.warn('[DIUserscript] (FuckBlockAdBlock) check', true);
+                return true;
+            };
+            BlockAdBlock.prototype.emitEvent = function() {
+                console.warn('[DIUserscript] (FuckBlockAdBlock) emitEvent', this);
+                return this;
+            };
+            BlockAdBlock.prototype.clearEvent = function() {
+                console.warn('[DIUserscript] (FuckBlockAdBlock) clearEvent');
+            };
+            BlockAdBlock.prototype.on = function() {
+                console.warn('[DIUserscript] (FuckBlockAdBlock) on', this);
+                return this;
+            };
+            BlockAdBlock.prototype.onDetected = function() {
+                console.warn('[DIUserscript] (FuckBlockAdBlock) onDetected', this);
+                return this;
+            };
+            BlockAdBlock.prototype.onNotDetected = function() {
+                console.warn('[DIUserscript] (FuckBlockAdBlock) onNotDetected', this);
+                return this;
+            };
+        };
+        defineProp(window, 'BlockAdBlock', BlockAdBlock);
     });
 
 })();
