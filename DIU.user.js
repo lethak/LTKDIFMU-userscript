@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2017.8.0
+// @version     2017.8.1
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     http://www.di.fm*
@@ -12,13 +12,10 @@
 // @updateURL   https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.meta.js
 // @icon        http://i.imgur.com/7yj2PGY.png
 // @grant       none
+// @run-at      document-start
 // ==/UserScript==
 (function(){
-
     console.warn('[DIUserscript] Initializing');
-
-    window.trackCandidate = null;
-
 
     var defineProp = function(obj, propName, propValue){
         delete obj[propName];
@@ -31,136 +28,135 @@
         return obj;
     };
 
-    var WebplayerApp = di.app.module("WebplayerApp");
+    var adSilencer = function(){
+        console.warn('[DIUserscript] adSilencer');
 
-    // Ads Adblocks...
-    defineProp(WebplayerApp.Ads.Adblocks, 'logger', new di.log.Console("(DIUserscript) WebplayerApp.Ads.Adblocks "));
+        // Silence ads whenever they get played ... (should not be happening, but we never know, the rascals ;)
+        di.app.vent.on('webplayer:ad:begin', function(t) {
+            console.warn('[DIUserscript] webplayer:ad:begin (mute)', t);
+            di.app.commands.execute('webplayer:mute');
+        });
 
-    defineProp(WebplayerApp.Ads.Adblocks, 'adHasVisual', function(){
-        console.warn('[DIUserscript] Ads.Adblocks.adHasVisual: false');
-        return false; // Prevents the player popup from displaying during 'Sponsored Message' ad
-    });
+        di.app.vent.on('webplayer:ad:end', function(t) {
+            console.warn('[DIUserscript] webplayer:ad:end (unmute)', t);
+            di.app.commands.execute('webplayer:unmute');
+        });
+    };
 
-    // Ads Supervisor...
-    NS('di.app.WebplayerApp.Ads.Supervisor');
-    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'logger',  new di.log.Console("(DIUserscript) WebplayerApp.Ads.Supervisor "));
-
-    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'selectAds_', function(e){
-        console.warn('[DIUserscript] Ads.Supervisor.selectAds_: []', this);
-        return [];
-    });
-    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'requestAd', function(e){
-        console.warn('[DIUserscript] Ads.Supervisor.requestAd: false');
-        return jQuery.Deferred().reject().promise();
-    });
-    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'eligibleForPreroll', function(){
-        console.warn('[DIUserscript] Ads.Supervisor.eligibleForPreroll: false');
-        return false;
-    });
-    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'eligibleForMidroll', function(){
-        console.warn('[DIUserscript] Ads.Supervisor.eligibleForMidroll: false');
-        return false;
-    });
-    defineProp(di.app.WebplayerApp.Ads.Supervisor, 'startAd', function(){
-        console.warn('[DIUserscript] Ads.Supervisor.startAd: void 0');
-        return jQuery.Deferred().reject().promise();
-    });
-
-    // AdManagers !
-    /*
-     (AudioAddict.WP.wp.adManager) instanceof (window.AdManager) // true
-     (AudioAddict.WP.AdManager) instanceof (window.AdManager) // false, object
-     (AudioAddict.WP.wp.adManager) // object
-     */
-
-    // Silence ads whenever they get played ...
-    jQuery(document).off("ad-begin.diu").on("ad-begin.diu", function(e, x){
-        console.warn('[DIUserscript] Ad begin (muting)', e, x);
-        if(trackCandidate!==null){
-            //AudioAddict.WP.wp.adapter.load(trackCandidate);
+    var redefineTimers = function(){
+        console.warn('[DIUserscript] redefineTimers');
+        try{
+            di.app.WebplayerApp.Ads.Supervisor.timers.gracePeriod.getTimeRemaining = function() { return 1337; };
+            di.app.WebplayerApp.Ads.Supervisor.timers.midroll.getTimeRemaining = function() { return 1337; };
+            di.app.WebplayerApp.Ads.Supervisor.timers.session.getTimeRemaining = function() { return 1337; };
+        } catch(err) {
+            console.error('[DIUserscript] redefineTimers error', err.message);
         }
-        AudioAddict.WP.wp.tempMute();
-    });
-    jQuery(document).off("ad-end.diu").on("ad-end.diu", function(e, x){
-        console.warn('[DIUserscript] Ad end (unmuting)', e, x);
-        AudioAddict.WP.wp.tempUnMute();
-    });
+    };
 
-    // WebPlayer...
+    var redefineReqres = function(){
+        console.warn('[DIUserscript] redefineReqres');
 
-    /*
-     (AudioAddict.WP.wp) instanceof (AudioAddict.WP.WebPlayer) //true
-     (AudioAddict.WP.wp.channel) instanceof (window.Channel) // true
-     */
+        try {
 
-    NS('AudioAddict.WP.WebPlayer').prototype.logger = new di.log.Console("(DIUserscript) AudioAddict.WP.WebPlayer");
+            NS('di.app.reqres._wreqrHandlers');
 
-    // Member...
-    defineProp(window, 'Member', function(e) {
-        if (this.getAccess = function() {
-                console.warn('[DIUserscript] Member getAccess (premium) instead of ', n);
-                return 'premium';
+            // Rejecting ad request
+            defineProp(di.app.reqres._wreqrHandlers['webplayer:ads:requestAd'], 'callback', function () {
+                console.warn('[DIUserscript] webplayer:ads:requestAd', 'rejected');
+                return jQuery.Deferred().reject().promise();
+            });
+
+            // Should we show midroll ads ? Nope, no thanks.
+            defineProp(di.app.reqres._wreqrHandlers['webplayer:ads:shouldShowMidroll'], 'callback', function () {
+                console.warn('[DIUserscript] webplayer:ads:shouldShowMidroll', false);
+                return false;
+            });
+
+            // Rejecting midroll ad request
+            defineProp(di.app.reqres._wreqrHandlers['webplayer:ads:requestMidrollAd'], 'callback', function () {
+                console.warn('[DIUserscript] webplayer:ads:requestMidrollAd', 'rejected');
+                return jQuery.Deferred().reject().promise();
+            });
+
+            // Should we show preroll ads ? Nope, no thanks.
+            defineProp(di.app.reqres._wreqrHandlers['webplayer:ads:shouldShowPreroll'], 'callback', function () {
+                console.warn('[DIUserscript] webplayer:ads:shouldShowPreroll', false);
+                return false;
+            });
+
+            // Rejecting preroll ad request
+            defineProp(di.app.reqres._wreqrHandlers['webplayer:ads:requestPrerollAd'], 'callback', function () {
+                console.warn('[DIUserscript] webplayer:ads:requestPrerollAd', 'rejected');
+                return jQuery.Deferred().reject().promise();
+            });
+
+            // Anti Adblocker ? kill this with fire ! (mostly impacting free unregistered users)
+            defineProp(di.app.reqres._wreqrHandlers['adblocker:detected'], 'callback', function () {
+                console.warn('[DIUserscript] adblocker:detected', false);
+                return false;
+            });
+
+            // Make Adblocker Great Again
+            defineProp(di.app.reqres._wreqrHandlers['adblocker:isWallEnforced'], 'callback', function () {
+                console.warn('[DIUserscript] adblocker:isWallEnforced', false);
+                return false;
+            });
+
+            var userType = di.app.reqres.request('current_user:type'); // guest|public|premium
+            if (userType === 'public') {
+
+                // Always judging people ...
+                defineProp(di.app.reqres._wreqrHandlers['current_user:isPremium'], 'callback', function () {
+                    console.warn('[DIUserscript] current_user:isPremium', true);
+                    return true;
+                });
+
+                // Lets pretend
+                defineProp(di.app.reqres._wreqrHandlers['current_user:type'], 'callback', function () {
+                    console.warn('[DIUserscript] current_user:type', 'premium');
+                    return 'premium';
+                });
             }
-                ,
-                this.setAccess = function(e) {
-                    e != n && (n = e,
-                        $(document).trigger("member-access", 'premium'));
-                }
-                ,
-                this.getListenKey = function() {
-                    return i;
-                }
-                ,
-                this.setListenKey = function(e) {
-                    e != i && (i = e ? e : "",
-                        $(document).trigger("member-listenkey", e));
-                }
-                ,
-                this.getSpeed = function() {
-                    var e = t.wp.streamlist.getSpeeds(t.wp.member.getAccess(), "webplayer");
-                    return e[r] && "object" == typeof e[r] ? r : ($.log(LogPrefix() + "(DIUserscript) AudioAddict.WP.Member: Current speed {" + r + "} is invalid; defaulting to first available {" + Object.keys(e)[0] + "}"),
-                        r = Object.keys(e)[0]);
-                }
-                ,
-            "undefined" == typeof e)
-            throw "(DIUserscript) AudioAddict.WP.Member: FATAL: No parameters provided";
-        if ("premium" == e.access && !e.listenKey)
-            throw "(DIUserscript) AudioAddict.WP.Member: FATAL: listenKey is required for Premium users";
-        var t = NS("AudioAddict.WP")
-            , n = "premium"/*e.access*/
-            , i = e.listenKey ? e.listenKey : ""
-            , r = e.speed;
-        $.log(LogPrefix() + "(DIUserscript) AudioAddict.WP.Member: Initialized");
+        }
+        catch(err) {
+            console.error('[DIUserscript] redefineReqres error', err.message);
+        }
+
+    };
+
+    // jQuery(window.document).ready(function() {
+    document.addEventListener("DOMContentLoaded", function(event) {
+        console.warn('[DIUserscript] window.document ready');
+
+        redefineReqres();
+        redefineTimers();
+        adSilencer();
+
+        setTimeout(function(){
+            // // Improved webplayer quality (3 = High) (disabled, Free Listeners can change it via their account settings)
+            // console.warn('[DIUserscript] preferredQuality:set', 3);
+            // di.app.commands.execute('preferredQuality:set', 3);
+            // setTimeout(function(){
+            //     var audioQuality = di.app.reqres.request('audioQualities:selected').attributes;
+            //     di.app.commands.execute('message:success', 'Webplayer audio quality is now: '+audioQuality.name+' '+audioQuality.content_quality.name+' '+audioQuality.content_format.name);
+            // }, 2000);
+
+            di.app.commands.execute('message:notice', 'DIUserscript is enabled ! enjoy free uninterrupted music');
+        }, 2000);
+
+        setInterval(function(){
+            // Removing Premium ad display
+            jQuery('.premium-upsell').remove();
+            jQuery('.menu-item.go-premium').remove();
+            jQuery('.sidebar-ad-component').remove();
+            jQuery('#panel-ad').remove();
+
+            // Breaking anti AFK system
+            try { di.eventbus.trigger('user:active'); } catch(err) { console.error('(DIUserscript) : '+err.message); }
+            try { di.app.vent.trigger('user:active'); } catch(err) { console.error('(DIUserscript) : '+err.message); }
+            try { di.app.timedAlerts.stop(); } catch(err) { console.error('(DIUserscript) : '+err.message); }
+        }, 1000);
     });
-
-
-    setInterval(function(){
-        // Removing Premium ad display
-        jQuery('.premium-upsell').remove();
-        jQuery('.menu-item.go-premium').remove();
-        jQuery('.sidebar-ad-component').remove();
-
-        // Breaking anti AFK system
-        di.eventbus.trigger('user:active');
-        di.app.timedAlerts.stop();
-        jQuery('.modal-btn.continue').click();
-        jQuery('.modal-btn.countdown-btn').click();
-    }, 1000);
-
-
-
-    // R&D
-    //jQuery('#player').get(0)._stop();
-
-    //jQuery(document).on('add-new', function(e, d){
-    //    console.warn('[DIUserscript] on add-new (nope)', e, d);
-    //});
-
-    // Trying to bypass audio ads
-    jQuery(document).off("metadata-load.diu").on("metadata-load.diu", function(e,d){
-        console.warn('[DIUserscript] metadata-load.diu trackCandidate', e, d);
-        trackCandidate = d;
-    });
-
 
 })();

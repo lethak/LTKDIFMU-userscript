@@ -1,0 +1,230 @@
+
+// Toying with events ...
+
+di.eventbus.trigger('user:active'); // deprecated
+di.app.vent.trigger('user:active');
+.listenTo(t.vent, "webplayer:playing:change", this.onPlayingChange)
+
+di.app.vent._events
+
+    mobilenav:open
+    on_air_event:upcoming
+    payment:method:removed
+    payment:method:saved
+    performanceEvent
+    persistent:messaging:height
+    regwall:limitReached
+    search:open
+    sidenav:toggle
+    track:purchase
+    webplayer:ad:begin
+    webplayer:ad:end
+    webplayer:ad:noneAvailable
+    webplayer:adblock:begin
+    webplayer:adblock:end
+    webplayer:end
+    webplayer:error
+    webplayer:playing:change
+    webplayer:ready
+    webplayer:stopped
+    webplayer:track:change
+
+
+// Logic hub ...
+di.app.reqres._wreqrHandlers
+
+    adblocker:detected
+    adblocker:isWallEnforced
+    audioQualities
+    audioQualities:selected
+    channel:entities
+    channel:entities:favorites
+    channel:entity
+    channel:listeningHistory
+    channelFilter:entities
+    channelFilter:entity
+    channel_routine:entity
+    content:onDemandAvailable
+    content:retailAvailable
+    current_user
+    current_user:apiKey
+    current_user:audioToken
+    current_user:hasPurchases
+    current_user:id
+    current_user:isAuthenticated
+    current_user:isBillable
+    current_user:isFresh
+    current_user:isPremium
+    current_user:listenKey
+    current_user:sessionID
+    current_user:sessionKey
+    current_user:type
+    favorites:add
+    favorites:remove
+    member:username_available
+    modal:isBlocking
+    modals:disabled
+    ping:serverTime
+    playlist:entity
+    show:entity
+    similarChannels
+    streamSetConfig:entities
+    streamlist:entities
+    streamlist:listen_url
+    track:entity
+    trackHistory:entities
+    trackHistory:entity
+    voteCache:lookup
+    voteCache:persist
+    webplayer:ads:requestAd
+    webplayer:ads:requestMidrollAd
+    webplayer:ads:requestPrerollAd
+    webplayer:ads:shouldShowMidroll
+    webplayer:ads:shouldShowPreroll
+    webplayer:canResume
+    webplayer:canSeek
+    webplayer:channel
+    webplayer:channelForOnAirTrack
+    webplayer:contentType
+    webplayer:context
+    webplayer:contextType
+    webplayer:currentTime
+    webplayer:duration
+    webplayer:episode
+    webplayer:fadeout
+    webplayer:hasOnAirEpisode
+    webplayer:hasPlayed
+    webplayer:interruptible
+    webplayer:isChannelContext
+    webplayer:isConnecting
+    webplayer:isEpisodeContext
+    webplayer:isFirstTimeListener
+    webplayer:isLegacy
+    webplayer:isOnAir
+    webplayer:isPlaying
+    webplayer:isPlayingAd
+    webplayer:isPlayingTrack
+    webplayer:isPlaylistContext
+    webplayer:isPreview
+    webplayer:isReady
+    webplayer:isSeeking
+    webplayer:isShowContext
+    webplayer:isShowingAd
+    webplayer:isTrackContext
+    webplayer:mobile:ready
+    webplayer:muted
+    webplayer:timeRemain
+    webplayer:track
+    webplayer:volume
+    xhrpages:path
+    xhrpages:queryparams
+    xhrpages:route
+    xhrpages:routeparams
+    xhrpages:url
+
+
+// some commands ...
+
+di.app.commands.execute(...
+di.app.commands._wreqrHandlers
+
+    adblocker:enforceWall
+    app:navigate
+    app:reloaded:alert
+    channel_routines:invalidate
+    current_user:setListenKey
+    favorites:save
+    gigya:login:facebook
+    gigya:login:googleplus
+    message
+    message:clear_all
+    message:error
+    message:error:persistent
+    message:notice
+    message:notice:persistent
+    message:persistent
+    message:success
+    message:success:persistent
+    message:warn
+    message:warn:persistent
+    modal:connectiontimeout
+    modal:gatekeeper
+    modal:gcal
+    modal:login
+    modal:midroll
+    modal:passwordReset
+    modal:signup
+    modal:streaminterrupt
+    modal:verifyAction
+    modals:closeAll
+    modals:disable
+    modals:enable
+    msg:loadingError
+    preferredQuality:set
+    responsiveModule:parse
+    scroll:target
+    scroll:top
+    track:download
+    track:purchase
+    webplayer:adpanel:close
+    webplayer:ads:message:go_premium
+    webplayer:ads:timers:complete
+    webplayer:autoresume
+    webplayer:disableWithCallback
+    webplayer:empty
+    webplayer:mute
+    webplayer:mute:toggle
+    webplayer:pause
+    webplayer:play
+    webplayer:play:ad
+    webplayer:play:channel
+    webplayer:play:onAirShow
+    webplayer:play:playlist
+    webplayer:play:preview
+    webplayer:play:track
+    webplayer:playNextItem
+    webplayer:playPauseToggle
+    webplayer:resume:channel
+    webplayer:resume:track
+    webplayer:seek
+    webplayer:show
+    webplayer:src
+    webplayer:stop
+    webplayer:unmute
+    webplayer:volume
+    xhrpages:fragmentTrigger
+    xhrpages:fragmentTrigger:add
+    xhrpages:fragmentTrigger:remove
+    xhrpages:route:add
+    xhrpages:route:remove
+    xhrpages:set:loading
+    xhrpages:silentUpdate
+    xhrpages:wait:disable
+    xhrpages:wait:enable
+
+
+
+
+// Midroll log sequence ...
+
+[:20.996] WebplayerApp.Ads.Supervisor: eligible for midroll
+[:20.996] WebplayerApp.Ads.Supervisor: Attempting to start ad {dfp/midroll/audio/300/250}
+[:20.997] WebplayerApp.Ads.Provider.DFP: Requesting Ad 1 of 4
+[:21.144] WebplayerApp.Ads.Provider.DFP: Ad response receieved
+[:21.912] WebplayerApp.Ads.Adblocks: Ad block begun
+[:21.916] Webplayer.Ads.UI: Ad block begun, showing ad panel
+[:52.130] WebplayerApp.Ads.Provider.DFP: Requesting Ad 2 of 4
+[:52.623] WebplayerApp.Ads.Provider.DFP: Ad response receieved
+[:52.623] WebplayerApp.Ads.Provider.DFP: No Ads Available, trying again...
+[:52.624] WebplayerApp.Ads.Provider.DFP: Requesting Ad 2 of 4
+[:52.916] WebplayerApp.Ads.Provider.DFP: Ad response receieved
+[:52.917] WebplayerApp.Ads.Provider.DFP: No Ads Available (1 played). undefined
+[:52.917] WebplayerApp.Ads.Provider.DFP: All Ads Completed (1 played)
+[:52.921] WebplayerApp.Ads.Adblocks: Ad block end
+[:52.923] Webplayer.Ads.UI: Ad block ended, closing ad panel
+[:52.925] WebplayerApp.Ads.Adblocks: Track completed, resuming channel routine.
+[:52.988] WebplayerApp.Ads.Supervisor: Midroll ad completed
+
+[:55.164] WebplayerApp.Ads.Supervisor: ineligible for midroll; interval incomplete
+
+
