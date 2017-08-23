@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2017.8.1
+// @version     2017.8.2
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     http://www.di.fm*
@@ -130,8 +130,6 @@
         console.warn('[DIUserscript] window.document ready');
 
         redefineReqres();
-        redefineTimers();
-        adSilencer();
 
         setTimeout(function(){
             // // Improved webplayer quality (3 = High) (disabled, Free Listeners can change it via their account settings)
@@ -142,6 +140,8 @@
             //     di.app.commands.execute('message:success', 'Webplayer audio quality is now: '+audioQuality.name+' '+audioQuality.content_quality.name+' '+audioQuality.content_format.name);
             // }, 2000);
 
+            adSilencer();
+            redefineTimers();
             di.app.commands.execute('message:notice', 'DIUserscript is enabled ! enjoy free uninterrupted music');
         }, 2000);
 
