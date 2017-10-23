@@ -165,6 +165,7 @@
             jQuery('.menu-item.go-premium').remove();
             jQuery('.sidebar-ad-component').remove();
             jQuery('#panel-ad').remove();
+            jQuery('.go-premium-cta').remove();
 
             // Breaking anti AFK system
             try { di.eventbus.trigger('user:active'); } catch(err) { console.error('(DIUserscript) : '+err.message); }
