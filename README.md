@@ -26,7 +26,9 @@ Since I am only using di.fm, please consider helping by [giving feedback](https:
 ## Installation
 
 ### First time
-Load this [userscript](https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js) with [greasemonkey](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) or [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) browser extension
+Load this [userscript](https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js) with [greasemonkey <= 3.x](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) or [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) (recommended) browser extension
+
+Please note, the script is not working with Firefox "Quantum" >= 57 & Greasemonkey > 4.x, this is why Tampermonkey is recommended. [more on this here](https://github.com/lethak/digitally_imported_userscript/issues/8)
 
 Userscript: https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js
 
