@@ -1,3 +1,4 @@
+di.app.WebplayerApp.model.setVolume(...
 
 // Toying with events ...
 
@@ -5,8 +6,10 @@ di.eventbus.trigger('user:active'); // deprecated
 di.app.vent.trigger('user:active');
 .listenTo(t.vent, "webplayer:playing:change", this.onPlayingChange)
 
+
 di.app.vent._events
 
+    locationChange
     mobilenav:open
     on_air_event:upcoming
     payment:method:removed
@@ -17,6 +20,7 @@ di.app.vent._events
     search:open
     sidenav:toggle
     track:purchase
+    user:active
     webplayer:ad:begin
     webplayer:ad:end
     webplayer:ad:noneAvailable
@@ -31,6 +35,7 @@ di.app.vent._events
 
 
 // Logic hub ...
+di.app.reqres.request(...
 di.app.reqres._wreqrHandlers
 
     adblocker:detected

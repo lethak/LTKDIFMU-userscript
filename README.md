@@ -6,11 +6,12 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ## Features
 
-* Preventing **almost all** ads to reach your ears by bypassing them.
-* Removing some over-intrusive "premium" ad menu entry, popup and panel on all pages.
+* Preventing **all** automated ads to reach your ears, bypassing them.
+* Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade You still can click on "Free Listener" while logged in)
 * Breaking the anti-AFK system, so you can let the music run for hours without any human interaction.
 * Breaking the anti-adblocker system, so you can enjoy the music with AdBlock or AdblockPlus enabled.
 * Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
+* Added a numeric volume input control for precise tuning.
 
 ## Supported sites
 
@@ -22,13 +23,12 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 Since I am only using di.fm, please consider helping by [giving feedback](https://github.com/lethak/digitally_imported_userscript/issues/5) for the other sites (what is not working, almost working, etc...)
 
-
 ## Installation
 
 ### First time
-Load this [userscript](https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js) with [greasemonkey <= 3.x](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) or [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) (recommended) browser extension
+Load this [userscript](https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js) with the recommended [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) browser extension.
 
-Please note, the script is not working with Firefox "Quantum" >= 57 & Greasemonkey > 4.x, this is why Tampermonkey is recommended. [more on this here](https://github.com/lethak/digitally_imported_userscript/issues/8)
+If you prefer greasemonkey over tampermonkey, please read the Troubleshooting section.
 
 Userscript: https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js
 
@@ -44,8 +44,34 @@ Sometimes, chrome and firefox will disable greasemonkey or tampermonkey for some
 
 I have not managed to make the script work on mobile or tablet. If you have any clue on how to do it, please create a new issue or submit a pull request.
 
+For [greasemonkey](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) users, the script is having troubles with Firefox since the "Quantum" update (version >= 57), this is why the latest version of  [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) is now recommended for all browsers.
+
+Compatibility:
+
+| -  | Firefox < 57 |  Firefox Quantum >= 57 | Chrome |
+|---|---|---|---|
+| Greasemonkey <= 3.x | OK | Broken | OK |
+| Tampermonkey <= 3.x | OK | Broken | OK |
+| Greasemonkey >= 4.x | - | Broken | ? |
+| Tampermonkey >= 4.x | - | OK | OK |
+
+[more on this here](https://github.com/lethak/digitally_imported_userscript/issues/8)
+
+## Versioning
+
+Each public version of the script is released as a tag with the following format:
+
+> <YEAR>.<MONTH>.<release number for the month>
+
+## Disclaimer
+
+This user-script is in no way affiliated with DI or associated companies, brands or trademarks, and is provided for private personal use only, without any warranty whatsoever.
+
+
 ## Still polluted by ads ?
 
 Let me know via the "issue" section of this repository, or submit a pull request if you know how to fix the script.
 
 If you can afford it, please consider [becoming premium](https://www.di.fm/premium). You will get access to DI in high quality and can listen from VLC or other players.
+
+
