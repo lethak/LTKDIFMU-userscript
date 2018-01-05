@@ -61,7 +61,7 @@ Compatibility:
 
 Each public version of the script is released as a tag with the following format:
 
-> <YEAR>.<MONTH>.<release number for the month>
+> YEAR.MONTH.release number for the month
 
 ## Disclaimer
 
