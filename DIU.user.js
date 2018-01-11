@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2018.1.1
+// @version     2018.1.2
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     https://*.di.fm*
@@ -398,6 +398,12 @@
         try {
 
             NS('di.app.reqres._wreqrHandlers');
+
+            // Allowing to manually seek a specific position while playing a track (aka scrubbing), either via the main timeline, or track's/channel's hero page.
+            defineProp(di.app.reqres._wreqrHandlers['webplayer:canSeek'], 'callback', function() {
+                console.warn('[DIUserscript] webplayer:canSeek', true);
+                return true;
+            });
 
             // Rejecting ad request
             defineProp(di.app.reqres._wreqrHandlers['webplayer:ads:requestAd'], 'callback', function () {

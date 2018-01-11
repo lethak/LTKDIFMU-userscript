@@ -15,6 +15,7 @@ This userscript is trying to minimize and block audio and visual advertisement o
 * Audio Player: Download button for the current playing track
 * Audio Player: Play previous track button (di.fm only)
 * Audio Player: Skip current track button (di.fm only)
+* Audio Player: Allowing to manually seek a specific position while playing a track (aka timeline scrubbing)
 
 ## Supported sites
 
