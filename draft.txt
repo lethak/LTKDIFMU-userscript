@@ -1,5 +1,12 @@
 di.app.WebplayerApp.model.setVolume(...
 
+// Toying with dev env ...
+window.di = {env:{}};
+defineProp(window.di, 'env', {
+    development: true,
+    production: false
+});
+
 // Toying with events ...
 
 di.eventbus.trigger('user:active'); // deprecated
@@ -207,6 +214,13 @@ di.app.commands._wreqrHandlers
     xhrpages:wait:disable
     xhrpages:wait:enable
 
+
+// Toying with tracks ...
+di.app.reqres.request('webplayer:track')
+di.app.reqres.request('webplayer:track').get('src')
+di.app.commands.execute("webplayer:play:track", track, context/channel/null)
+di.app.commands.execute("webplayer:play:track", di.app.reqres.request('webplayer:track'), di.app.reqres.request("webplayer:context"))
+di.app.commands.execute('webplayer:playNextItem')
 
 
 

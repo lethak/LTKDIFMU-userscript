@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
-// @version     2018.1.0
+// @version     2018.1.1
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     https://*.di.fm*
@@ -29,9 +29,13 @@
         initTimeout();
         initInterval();
 
-        addVolumeNumericInput(); // comment this line if you don't want this feature
+        WebPlayer.init();
 
-
+        // Comment those lines if you don't want the associated feature ...
+        addVolumeNumericInput();
+        addPlayingTrackDownloadActionButton();
+        addWebplayerPrevTrackButton();
+        addWebplayerSkipTrackButton();
 
         console.log('[DIUserscript] Initialized');
     });
@@ -68,9 +72,11 @@
     /**
      * WebPlayer Utilities
      *
-     * @type {{getCurentVolume: getCurentVolume, setVolume: setVolume}}
+     * @type {{getVolume: getVolume, setVolume: setVolume}}
      */
     var WebPlayer = {
+        prevTrackModel: null,
+        curTrackModel: null,
         event: {
             onVolumeChange: function(func) {
                 console.log('[DIUserscript] WebPlayer.event.onVolumeChange (new handler)');
@@ -79,6 +85,13 @@
                 }
                 di.app.WebplayerApp.model.on('change:volume', func);
             }
+        },
+        init: function() {
+            di.app.vent.on('webplayer:track:change', function(e) {
+                console.warn('[DIUserscript] WebPlayer.init (webplayer:track:change)');
+                WebPlayer.prevTrackModel = WebPlayer.curTrackModel;
+                WebPlayer.curTrackModel = WebPlayer.getCurrentTrackModel();
+            });
         },
         getVolume: function() {
             return di.app.reqres.request('webplayer:volume');
@@ -97,12 +110,50 @@
 
             di.app.commands.execute('webplayer:volume', volume);
             // di.app.WebplayerApp.model.setVolume(value);
+        },
+        getCurrentTrackModel: function (){
+            return di.app.reqres.request('webplayer:track');
+        },
+        downloadCurrentTrack: function (){
+            console.log('[DIUserscript] WebPlayer.downloadCurrentTrack');
+
+            var trackModel = WebPlayer.getCurrentTrackModel();
+            if (trackModel === null) {
+                console.error('[DIUserscript] WebPlayer.downloadCurrentTrack : ', trackModel);
+                return;
+            }
+            return WebPlayer.downloadTrack(trackModel);
+        },
+        downloadTrack: function (trackModel){
+            console.log('[DIUserscript] WebPlayer.downloadTrack ', trackModel);
+
+            var retail = trackModel.get('retail');
+            if (typeof retail !== 'object' || typeof retail['download'] === 'undefined') {
+                var src = trackModel.get('src');
+                // retail = {download:{url: src}};
+                // trackModel.set('retail', retail);
+                // console.log('[DIUserscript] WebPlayer.downloadTrack (retail changed)', retail);
+                window.open('https:' + src);
+            } else {
+                // Legit Download Process
+                return di.app.commands.execute("track:download", {
+                    stateModel: {
+                        set: function (obj) {console.warn('[DIUserscript] WebPlayer.downloadTrack (stateModel set) ', obj, this);}
+                    },
+                    trackModel: trackModel
+                });
+            }
+        },
+        playNextItem: function() {
+            di.app.commands.execute('webplayer:playNextItem');
+        },
+        playPreviousTrack: function() {
+            di.app.commands.execute("webplayer:play:track", WebPlayer.prevTrackModel, di.app.reqres.request("webplayer:context"));
         }
     };
 
     var removeHomeHeroPremiumVisualAds = function() {
         var $bannersAnchors = jQuery('.banner a[href^="/premium?"]', '#hero.home');
-        var iToRemove = 0 + $bannersAnchors.length;
         var iRemoved = 0;
         $bannersAnchors.each(function(i,v) {
             jQuery(v).parents('.banner').remove();
@@ -110,8 +161,27 @@
         });
 
         if (iRemoved > 0) {
-            console.warn('[DIUserscript] removeHomeHeroPremiumVisualAds (remove count): ', iRemoved);
+            console.log('[DIUserscript] removeHomeHeroPremiumVisualAds (removed count): ', iRemoved);
         }
+    };
+
+
+    /**
+     * Removing most premium ad display
+     */
+    var removeVisualAds = function() {
+        var $visualAds = jQuery('.premium-upsell, .menu-item.go-premium, .sidebar-ad-component, #panel-ad, .go-premium-cta');
+        var iRemoved = 0;
+        $visualAds.each(function(i,v) {
+            jQuery(v).remove();
+            iRemoved = iRemoved + 1;
+        });
+
+        if (iRemoved > 0) {
+            console.log('[DIUserscript] removeVisualAds (removed count): ', iRemoved);
+        }
+
+        removeHomeHeroPremiumVisualAds();
     };
 
     /**
@@ -184,6 +254,107 @@
         } catch(err) {
             console.error('[DIUserscript] addVolumeNumericInput error: ', err.message);
         }
+    };
+
+    /**
+     * @todo multisite support
+     */
+    var addPlayingTrackDownloadActionButton = function () {
+        console.log('[DIUserscript] addPlayingTrackDownloadAction: ');
+
+        di.app.vent.on('webplayer:track:change', function(e) {
+            console.warn('[DIUserscript] addPlayingTrackDownloadAction (webplayer:track:change)', e);
+
+            setTimeout(function() {
+                var $container = jQuery('.actions-container .purchase-control-region, #webplayer-region .right.side #toolbar menu:first'); // multisite support
+                jQuery('.dui-addPlayingTrackDownloadActionButton').remove();
+                if (getCurrentSiteKey() === 'di') {
+                    var $btns = jQuery('<div class="dui-addPlayingTrackDownloadActionButton"><ul class="dui-buttons"><li class="dlAction ico icon-download" title="Download [DUI]"></li></ul></div>');
+                } else {
+                    var $btns = jQuery('<li class="dui-addPlayingTrackDownloadActionButton"><button title="Download [DUI]" type="button" class="dlAction icon-download">Download</button></li>');
+                }
+
+                $btns.appendTo($container);
+                $btns.find('.dlAction').first().on('click', function (e) {
+                    WebPlayer.downloadCurrentTrack();
+                })
+            }, 1000);
+        });
+    };
+
+    /**
+     * @todo multisite support
+     */
+    var addWebplayerSkipTrackButton = function () {
+        console.log('[DIUserscript] addWebplayerSkipButton');
+
+        di.app.vent.on('webplayer:playing:change', function() {
+            console.warn('[DIUserscript] addWebplayerSkipButton (webplayer:playing:change)');
+
+            var isPlayingTrack = di.app.reqres.request('webplayer:isPlayingTrack');
+            var isPlaying = di.app.reqres.request('webplayer:isPlaying');
+
+            $skipTrackDomElems = jQuery('.dui-skip-container');
+            if (!isPlaying) {
+                //$skipTrackDomElems.remove();
+            }
+            else if ($skipTrackDomElems.length < 1) {
+                $skipTrackDomElems = jQuery('<div class="dui-skip-container"><a class="ico icon-hero_next" aria-label="Skip [DIU]" title="Skip [DIU]"></a></div>')
+                $skipTrackDomElems.css('display', 'inline-block');
+                $skipTrackDomElems.find('.icon-hero_next')
+                    .css('font-size', '32px')
+                    .css('width', '32px')
+                    .css('color', '#e9f1f9')
+                ;
+                $container = jQuery('#webplayer-region .controls');
+                $container.css('width', '126px');
+                $skipTrackDomElems.appendTo($container);
+                $container.find('div').each(function(i,v){
+                    jQuery(v).css('display', 'inline-block').css('margin', '0 5px');
+                });
+                $skipTrackDomElems.on('click', function(e){
+                    WebPlayer.playNextItem();
+                });
+            }
+        });
+    };
+
+    var addWebplayerPrevTrackButton = function () {
+        console.log('[DIUserscript] addWebplayerPrevTrackButton');
+
+        di.app.vent.on('webplayer:track:change', function() {
+            console.warn('[DIUserscript] addWebplayerPrevTrackButton (webplayer:track:change)');
+            render();
+        });
+
+        di.app.vent.on('webplayer:playing:change', function() {
+            console.warn('[DIUserscript] addWebplayerPrevTrackButton (webplayer:playing:change)');
+            render();
+        });
+
+        var render = function(){
+            $domElems = jQuery('.dui-prevtrack-container');
+            if ($domElems.length < 1 && WebPlayer.prevTrackModel !== null) {
+                $domElems = jQuery('<div class="dui-prevtrack-container"><a class="ico icon-hero_previous" aria-label="Previous [DIU]" title="Previous [DIU]"></a></div>')
+                $domElems.css('display', 'inline-block');
+                $domElems.find('.icon-hero_previous')
+                    .css('font-size', '32px')
+                    .css('width', '32px')
+                    .css('color', '#e9f1f9')
+                ;
+                $container = jQuery('#webplayer-region .controls');
+                $container.css('width', '126px');
+                $domElems.prependTo($container);
+                $container.find('div').each(function(i,v){
+                    jQuery(v).css('display', 'inline-block').css('margin', '0 5px');
+                });
+                $domElems.on('click', function(e){
+                    WebPlayer.playPreviousTrack();
+                });
+            }
+        };
+
+
     };
 
     /**
@@ -364,13 +535,7 @@
         console.log('[DIUserscript] initInterval');
 
         setInterval(function(){
-            // Removing Premium ad display
-            jQuery('.premium-upsell').remove();
-            jQuery('.menu-item.go-premium').remove();
-            jQuery('.sidebar-ad-component').remove();
-            jQuery('#panel-ad').remove();
-            jQuery('.go-premium-cta').remove();
-            removeHomeHeroPremiumVisualAds();
+            removeVisualAds();
 
             // Breaking anti AFK system
             try { di.app.vent.trigger('user:active'); } catch(err) { console.error('[DIUserscript] : '+err.message); }

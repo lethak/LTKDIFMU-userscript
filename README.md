@@ -6,12 +6,15 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ## Features
 
-* Preventing **all** automated ads to reach your ears, bypassing them.
-* Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade You still can click on "Free Listener" while logged in)
-* Breaking the anti-AFK system, so you can let the music run for hours without any human interaction.
-* Breaking the anti-adblocker system, so you can enjoy the music with AdBlock or AdblockPlus enabled.
-* Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
-* Added a numeric volume input control for precise tuning.
+* Ads: Prevents **all** automated ads to reach your ears, bypassing them.
+* Ads: Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
+* Ads: Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade You still can click on "Free Listener" while logged in)
+* Ads: Confusing the anti-AdBlocker system, so you can enjoy the music with your favorite ad-blocker enabled.
+* Audio Player: Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
+* Audio Player: Numeric volume input control for precise tuning.
+* Audio Player: Download button for the current playing track
+* Audio Player: Play previous track button (di.fm only)
+* Audio Player: Skip current track button (di.fm only)
 
 ## Supported sites
 
