@@ -267,11 +267,11 @@
 
             setTimeout(function() {
                 var $container = jQuery('.actions-container .purchase-control-region, #webplayer-region .right.side #toolbar menu:first'); // multisite support
-                jQuery('.dui-addPlayingTrackDownloadActionButton').remove();
+                jQuery('.diu-addPlayingTrackDownloadActionButton').remove();
                 if (getCurrentSiteKey() === 'di') {
-                    var $btns = jQuery('<div class="dui-addPlayingTrackDownloadActionButton"><ul class="dui-buttons"><li class="dlAction ico icon-download" title="Download [DUI]"></li></ul></div>');
+                    var $btns = jQuery('<div class="diu-addPlayingTrackDownloadActionButton"><ul class="diu-buttons"><li class="dlAction ico icon-download" title="Download [DIU]"></li></ul></div>');
                 } else {
-                    var $btns = jQuery('<li class="dui-addPlayingTrackDownloadActionButton"><button title="Download [DUI]" type="button" class="dlAction icon-download">Download</button></li>');
+                    var $btns = jQuery('<li class="diu-addPlayingTrackDownloadActionButton"><button title="Download [DIU]" type="button" class="dlAction icon-download">Download</button></li>');
                 }
 
                 $btns.appendTo($container);
@@ -294,12 +294,12 @@
             var isPlayingTrack = di.app.reqres.request('webplayer:isPlayingTrack');
             var isPlaying = di.app.reqres.request('webplayer:isPlaying');
 
-            $skipTrackDomElems = jQuery('.dui-skip-container');
+            $skipTrackDomElems = jQuery('.diu-skip-container');
             if (!isPlaying) {
                 //$skipTrackDomElems.remove();
             }
             else if ($skipTrackDomElems.length < 1) {
-                $skipTrackDomElems = jQuery('<div class="dui-skip-container"><a class="ico icon-hero_next" aria-label="Skip [DIU]" title="Skip [DIU]"></a></div>')
+                $skipTrackDomElems = jQuery('<div class="diu-skip-container"><a class="ico icon-hero_next" aria-label="Skip [DIU]" title="Skip [DIU]"></a></div>')
                 $skipTrackDomElems.css('display', 'inline-block');
                 $skipTrackDomElems.find('.icon-hero_next')
                     .css('font-size', '32px')
@@ -333,9 +333,9 @@
         });
 
         var render = function(){
-            $domElems = jQuery('.dui-prevtrack-container');
+            $domElems = jQuery('.diu-prevtrack-container');
             if ($domElems.length < 1 && WebPlayer.prevTrackModel !== null) {
-                $domElems = jQuery('<div class="dui-prevtrack-container"><a class="ico icon-hero_previous" aria-label="Previous [DIU]" title="Previous [DIU]"></a></div>')
+                $domElems = jQuery('<div class="diu-prevtrack-container"><a class="ico icon-hero_previous" aria-label="Previous [DIU]" title="Previous [DIU]"></a></div>')
                 $domElems.css('display', 'inline-block');
                 $domElems.find('.icon-hero_previous')
                     .css('font-size', '32px')
