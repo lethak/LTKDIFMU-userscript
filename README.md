@@ -1,8 +1,11 @@
-# Digitally Imported Userscript
+# DIUserscript
 
-This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios managed by DI.
+This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios powered by the AudioAddict platform.
 
-
+|:warning:|**This repository is going to change its name (and URL) soon following a [Trademark claim](./DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
+|---|---|
+|Problem|Since the auto-update url was using this repo, its going to break when the change occurs|
+|How to solve ?| [Click here](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) to update your userscript now using our new repo |
 
 ## Features
 
@@ -19,6 +22,8 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ## Supported sites
 
+5 known websites are partially or totally supported so far, consult the [complete list here](https://www.audioaddict.com).
+
 * https://di.fm
 * https://classicalradio.com
 * https://radiotunes.com
@@ -29,18 +34,22 @@ Since I am only using di.fm, please consider helping by [giving feedback](https:
 
 ## Installation
 
+### Disclaimer
+
+This fan-made userscript is in no way affiliated with AudioAddict.com, or any associated companies, brands or trademarks, and is provided only for experimental private and personal use, without any warranty whatsoever.
+
 ### First time
-Load this [userscript](https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js) with the recommended [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) browser extension.
+Load this [userscript](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) with the recommended [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) browser extension.
 
 If you prefer greasemonkey over tampermonkey, please read the Troubleshooting section.
 
-Userscript: https://github.com/lethak/digitally_imported_userscript/raw/master/DIU.user.js
+Userscript: https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js
 
 #### Update
 
-The userscript is setup to be auto-updated via [metadata-block](https://wiki.greasespot.net/Metadata_Block).
+The userscript is setup to be auto-updated via metadata-block [[1]](https://wiki.greasespot.net/Metadata_Block)[[2]](https://tampermonkey.net/documentation.php#_updateURL).
 
-You should not have anything to do beside asking greasemonkey or tampermonkey to check for updates; or wait for them to do it automatically.
+Nothing to be done beside asking tampermonkey or greasemonkey to check for updates; or wait for/setup them to do it automatically.
 
 #### Troubleshooting
 
@@ -67,15 +76,9 @@ Each public version of the script is released as a tag with the following format
 
 > YEAR.MONTH.release number for the month
 
-## Disclaimer
-
-This user-script is in no way affiliated with DI or associated companies, brands or trademarks, and is provided for private personal use only, without any warranty whatsoever.
-
-
 ## Still polluted by ads ?
 
 Let me know via the "issue" section of this repository, or submit a pull request if you know how to fix the script.
 
 If you can afford it, please consider [becoming premium](https://www.di.fm/premium). You will get access to DI in high quality and can listen from VLC or other players.
-
 
