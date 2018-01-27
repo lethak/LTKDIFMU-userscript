@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        DI Userscript
+// @name        Digitally Imported Userscript
 // @namespace   LTKDIFMU
 // @version     2018.1.3
 // @author      LethaK Maas
