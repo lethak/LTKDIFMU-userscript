@@ -1,8 +1,13 @@
-|:warning:|**Our old repository is going to change its name (and URL) soon following a [Trademark claim](./DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
-|---|---|
-|Problem|Since the auto-update url was using this repo, its going to break when the change occurs|
-|How to solve ?| [Click here](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) to update your userscript now using our new repo |
 
+- - - 
+
+|:warning:|**With release v2018.1.4, this repository AND USERSCRIPT changed its name and URL following a [Trademark claim](./DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
+|---|---|
+|Problem|Since the auto-update is operating under the script name "Digitally Imported Userscript", its going to break when the change occurs|
+|How to solve ?| [Click here](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) to update your userscript now using our new repo |
+|Then...|  Make sure you dont have any older version of this userscript still installed in Tampermonkey. Remove all version prior to 2018.1.4 that are still named "Digitally Imported Userscript" |
+
+- - - 
 
 ## Subject:
 A note from GitHub regarding your repository
