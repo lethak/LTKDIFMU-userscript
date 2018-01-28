@@ -17,7 +17,7 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ## Compatible webradios
 
-5 known websites are partially or totally working with DIUserscript so far, consult the [complete list here](https://www.audioaddict.com).
+DIUserscript is totally or partially functional on 5 known websites so far, consult the [complete list here](https://www.audioaddict.com).
 
 * https://di.fm
 * https://classicalradio.com
