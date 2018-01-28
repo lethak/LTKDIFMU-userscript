@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        Digitally Imported Userscript
+// @name        DIUserscript for AudioAddict platforms
 // @namespace   LTKDIFMU
-// @version     2018.1.3
+// @version     2018.1.4
 // @author      LethaK Maas
 // @description Removes afk popup and minimize ads if possible
 // @include     https://*.di.fm*
@@ -11,7 +11,7 @@
 // @include     https://*.rockradio.com*
 // @downloadURL https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js
 // @updateURL   https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.meta.js
-// @icon        http://i.imgur.com/7yj2PGY.png
+// @icon        https://i.imgur.com/vhn9FD6.png
 // @grant       none
 // @run-at      document-start
 // ==/UserScript==
@@ -530,7 +530,6 @@
             jQuery('<li class="menu-item"><a href="https://github.com/lethak/LTKDIFMU-userscript" target="_blank"><i class="icon-forward"></i> <span>DIUserscript</span></a></li>').appendTo('#side-nav ul');
 
             di.app.commands.execute('message:notice', 'Enjoy free uninterrupted music thanks to DIUserscript !');
-            di.app.commands.execute('message:warn:persistent', '<strong>A message from DIUserscript</strong>: <br>We are changing our GitHub repository name soon, following a Trademark Claim by "Digitally Imported, Inc". <a href="https://github.com/lethak/LTKDIFMU-userscript/blob/live/DigitallyImportedTrademarkClaim.md" target="_blank">Read more</a> or <a href="https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js" target="_blank">Click here to update now !</a>');
         }, 2000);
     };
 

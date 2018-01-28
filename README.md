@@ -2,11 +2,6 @@
 
 This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios powered by the AudioAddict platform.
 
-|:warning:|**This repository is going to change its name (and URL) soon following a [Trademark claim](./DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
-|---|---|
-|Problem|Since the auto-update url was using this repo, its going to break when the change occurs|
-|How to solve ?| [Click here](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) to update your userscript now using our new repo |
-
 ## Features
 
 * Ads: Prevents **all** automated ads to reach your ears, bypassing them.
@@ -20,17 +15,15 @@ This userscript is trying to minimize and block audio and visual advertisement o
 * Audio Player: Skip current track button (di.fm only)
 * Audio Player: Allowing to manually seek a specific position while playing a track (aka timeline scrubbing)
 
-## Supported sites
+## Compatible webradios
 
-5 known websites are partially or totally supported so far, consult the [complete list here](https://www.audioaddict.com).
+5 known websites are partially or totally working with DIUserscript so far, consult the [complete list here](https://www.audioaddict.com).
 
 * https://di.fm
 * https://classicalradio.com
 * https://radiotunes.com
 * https://jazzradio.com
 * https://rockradio.com
-
-Since I am only using di.fm, please consider helping by [giving feedback](https://github.com/lethak/digitally_imported_userscript/issues/5) for the other sites (what is not working, almost working, etc...)
 
 ## Installation
 
