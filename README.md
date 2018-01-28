@@ -31,7 +31,7 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 This fan-made userscript is in no way affiliated with AudioAddict.com, or any associated companies, brands or trademarks, and is provided only for experimental private and personal use, without any warranty whatsoever.
 
-### First time
+### Quick install
 Load this [userscript](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) with the recommended [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) browser extension.
 
 If you prefer greasemonkey over tampermonkey, please read the Troubleshooting section.
@@ -40,11 +40,24 @@ Userscript: https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DI
 
 #### Update
 
-The userscript is setup to be auto-updated via metadata-block [[1]](https://wiki.greasespot.net/Metadata_Block)[[2]](https://tampermonkey.net/documentation.php#_updateURL).
-
 Nothing to be done beside asking tampermonkey or greasemonkey to check for updates; or wait for/setup them to do it automatically.
 
+The userscript is setup to be auto-updated via metadata-block [[1]](https://wiki.greasespot.net/Metadata_Block)[[2]](https://tampermonkey.net/documentation.php#_updateURL).
+
+- - - 
+
+|:warning:|**With release v2018.1.4, this repository AND USERSCRIPT changed its name and URL following a [Trademark claim](./doc/DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
+|---|---|
+|Problem|If you upgraded from version v2018.1.3 or v2018.1.3b, a big red announcement is showing on the music platform asking you to update despite already being updated |
+|How to solve ?|  Make sure you dont have any older version of this userscript still installed in Tampermonkey. Remove all version prior to 2018.1.4 that are still named "Digitally Imported Userscript" |
+|Problem|If you upgraded from version older than v2018.1.3b, the script is going to run twice, and can have unwanted effects and doublons|
+|How to solve ?|  Same as above |
+
+- - - 
+
 #### Troubleshooting
+
+##### General advice
 
 Sometimes, chrome and firefox will disable greasemonkey or tampermonkey for some reasons. Please make sure they are installed and enabled before opening any issue here.
 
@@ -52,7 +65,7 @@ I have not managed to make the script work on mobile or tablet. If you have any 
 
 For [greasemonkey](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) users, the script is having troubles with Firefox since the "Quantum" update (version >= 57), this is why the latest version of  [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) is now recommended for all browsers.
 
-Compatibility:
+##### Browser & extension compatibility:
 
 | -  | Firefox < 57 |  Firefox Quantum >= 57 | Chrome |
 |---|---|---|---|
