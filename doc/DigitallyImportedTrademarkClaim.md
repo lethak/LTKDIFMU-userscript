@@ -1,11 +1,11 @@
-
 - - - 
 
-|:warning:|**With release v2018.1.4, this repository AND USERSCRIPT changed its name and URL following a [Trademark claim](./DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
+|:warning:|**With release v2018.1.4, this repository AND USERSCRIPT changed its name and URL following a [Trademark claim](./doc/DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
 |---|---|
-|Problem|Since the auto-update is operating under the script name "Digitally Imported Userscript", its going to break when the change occurs|
-|How to solve ?| [Click here](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) to update your userscript now using our new repo |
-|Then...|  Make sure you dont have any older version of this userscript still installed in Tampermonkey. Remove all version prior to 2018.1.4 that are still named "Digitally Imported Userscript" |
+|Problem|If you upgraded from version v2018.1.3 or v2018.1.3b, a big red announcement is showing on the music platform asking you to update despite already being updated |
+|How to solve ?|  Make sure you dont have any older version of this userscript still installed in Tampermonkey. Remove all version prior to 2018.1.4 that are still named "Digitally Imported Userscript" |
+|Problem|If you upgraded from version older than v2018.1.3b, the script is going to run twice, and can have unwanted effects and doublons|
+|How to solve ?|  Same as above |
 
 - - - 
 

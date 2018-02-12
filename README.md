@@ -4,16 +4,19 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ## Features
 
-* Ads: Prevents **all** automated ads to reach your ears, bypassing them.
-* Ads: Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
-* Ads: Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade You still can click on "Free Listener" while logged in)
-* Ads: Confusing the anti-AdBlocker system, so you can enjoy the music with your favorite ad-blocker enabled.
-* Audio Player: Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
-* Audio Player: Numeric volume input control for precise tuning.
-* Audio Player: Download button for the current playing track
-* Audio Player: Play previous track button (di.fm only)
-* Audio Player: Skip current track button (di.fm only)
-* Audio Player: Allowing to manually seek a specific position while playing a track (aka timeline scrubbing)
+### Ads:
+* Prevents **all** automated ads to play, bypassing them completely.
+* Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
+* Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade you still can click on "Free Listener" while logged in)
+* Confusing the anti-AdBlocker system, so you can enjoy the music with your favorite ad-blocker enabled.
+
+### Audio Player
+* Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
+* Numeric volume input control for precise tuning.
+* Download button for the current playing track
+* Play previous track button (DI only)
+* Skip current track button (DI only)
+* Allowing to manually seek a specific position while playing a track (aka timeline scrubbing)
 
 ## Compatible webradios
 
@@ -25,66 +28,41 @@ DIUserscript is totally or partially functional on 5 known websites so far, cons
 * https://jazzradio.com
 * https://rockradio.com
 
+As a fan of Digital, Classical, Jazz and Rock music, I can listen to those web radio without interruption
+
 ## Installation
 
 ### Disclaimer
 
 This fan-made userscript is in no way affiliated with AudioAddict.com, or any associated companies, brands or trademarks, and is provided only for experimental private and personal use, without any warranty whatsoever.
 
-### Quick install
-Load this [userscript](https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js) with the recommended [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) browser extension.
+> Read the dedicated [disclaimer page](./doc/disclaimer.md).
 
-If you prefer greasemonkey over tampermonkey, please read the Troubleshooting section.
+### First time
+Load the [userscript](https://github.com/lethak/LTKDIFMU-userscript/raw/live/DIUserscript.user.js) with the recommended __tampermonkey__ browser extension
+* [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+* [Tampermonkey for Firefox](https://addons.mozilla.org/fr/firefox/addon/tampermonkey/).
 
-Userscript: https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js
+For using greasemonkey over tampermonkey, please read the [troubleshooting](./doc/troubleshooting.md) section. 
+
+Direct link to the userscript: https://github.com/lethak/LTKDIFMU-userscript/raw/live/DIUserscript.user.js
+
+> Read the dedicated [troubleshooting page](./doc/troubleshooting.md).
 
 #### Update
 
-Nothing to be done beside asking tampermonkey or greasemonkey to check for updates; or wait for/setup them to do it automatically.
-
 The userscript is setup to be auto-updated via metadata-block [[1]](https://wiki.greasespot.net/Metadata_Block)[[2]](https://tampermonkey.net/documentation.php#_updateURL).
 
-- - - 
+Nothing to be done beside asking tampermonkey or greasemonkey to check for updates; or wait for/setup them to do it automatically.
 
-|:warning:|**With release v2018.1.4, this repository AND USERSCRIPT changed its name and URL following a [Trademark claim](./doc/DigitallyImportedTrademarkClaim.md) by "Digitally Imported, Inc"**|
-|---|---|
-|Problem|If you upgraded from version v2018.1.3 or v2018.1.3b, a big red announcement is showing on the music platform asking you to update despite already being updated |
-|How to solve ?|  Make sure you dont have any older version of this userscript still installed in Tampermonkey. Remove all version prior to 2018.1.4 that are still named "Digitally Imported Userscript" |
-|Problem|If you upgraded from version older than v2018.1.3b, the script is going to run twice, and can have unwanted effects and doublons|
-|How to solve ?|  Same as above |
-
-- - - 
-
-#### Troubleshooting
-
-##### General advice
-
-Sometimes, chrome and firefox will disable greasemonkey or tampermonkey for some reasons. Please make sure they are installed and enabled before opening any issue here.
-
-I have not managed to make the script work on mobile or tablet. If you have any clue on how to do it, please create a new issue or submit a pull request.
-
-For [greasemonkey](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) users, the script is having troubles with Firefox since the "Quantum" update (version >= 57), this is why the latest version of  [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) is now recommended for all browsers.
-
-##### Browser & extension compatibility:
-
-| -  | Firefox < 57 |  Firefox Quantum >= 57 | Chrome |
-|---|---|---|---|
-| Greasemonkey <= 3.x | OK | Broken | OK |
-| Tampermonkey <= 3.x | OK | Broken | OK |
-| Greasemonkey >= 4.x | - | Broken | ? |
-| Tampermonkey >= 4.x | - | OK | OK |
-
-[more on this here](https://github.com/lethak/digitally_imported_userscript/issues/8)
 
 ## Versioning
 
 Each public version of the script is released as a tag with the following format:
 
-> YEAR.MONTH.release number for the month
+> YEAR.MONTH.build number for the month
 
-## Still polluted by ads ?
 
-Let me know via the "issue" section of this repository, or submit a pull request if you know how to fix the script.
+## Still polluted by ads ? missing a feature ?
 
-If you can afford it, please consider [becoming premium](https://www.di.fm/premium). You will get access to DI in high quality and can listen from VLC or other players.
-
+First, read the [troubleshooting](./doc/troubleshooting.md) section. Then let me know via the "issue" section of this repository with as much details as possible.
