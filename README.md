@@ -65,4 +65,4 @@ Each public version of the script is released as a tag with the following format
 
 ## Still polluted by ads ? missing a feature ?
 
-First, read the [troubleshooting](./doc/troubleshooting.md) section. Then let me know via the "issue" section of this repository with as much details as possible.
+First, read the [troubleshooting](./doc/troubleshooting.md) section. Then let us know via the "issue" section of this repository with as much details as possible.

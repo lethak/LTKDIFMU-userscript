@@ -20,9 +20,9 @@ The code also uses the platform's plublic Event API to hook into the system to b
 
 ### The use of this Userscript created some errors, what can I do ?
 
-First, by using this userscript (or close enough forks) you agree than this is experimental, and not a commercial service provided to you.
+First, by using this userscript (or close enough forks) you agree this is a free experiment, and not a commercial service provided to you.
 
-But still, volunteers can look into it and try to help ! You always can open a new GitHib Issue on this repository to kindly ask for help. 
+But still, volunteers can look into issues and try to help ! You always can open a new GitHib Issue on this repository to kindly ask for help. 
 
 ### What is the intended audience of this Userscript ?
 
