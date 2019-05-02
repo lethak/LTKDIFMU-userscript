@@ -9,6 +9,7 @@ This userscript is trying to minimize and block audio and visual advertisement o
 * Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
 * Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade you still can click on "Free Listener" while logged in)
 * Confusing the anti-AdBlocker system, so you can enjoy the music with your favorite ad-blocker enabled.
+* Disabling as many unsolicited, under the hood tracking as possible. (ex: Facebook, Triton, Bing, Adwords)
 
 ### Audio Player
 * Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
