@@ -13,11 +13,16 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ### Audio Player
 * Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
-* Numeric volume input control for precise tuning.
-* Download button for the current playing track
-* Play previous track button (DI only)
-* Skip current track button (DI only)
-* Allowing to manually seek a specific position while playing a track (aka timeline scrubbing)
+* Numeric volume input control for precise tuning. 
+
+![volume ui](https://i.imgur.com/TmkQ3QT.png "volume ui")
+
+* Download button for the current playing track.
+* Play previous track button (DI only).
+* Skip current track button (DI only).
+* Allowing to manually seek a specific position while playing a track (aka timeline scrubbing).
+
+![player UI features](https://i.imgur.com/yuIvdoX.png "player UI features")
 
 ## Compatible webradios
 

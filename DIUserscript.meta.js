@@ -14,5 +14,5 @@
 // @icon https://i.imgur.com/vhn9FD6.png
 // @grant none
 // @run-at document-start
-// @version 2019.5.27
+// @version 2019.8.2
 // ==/UserScript==
