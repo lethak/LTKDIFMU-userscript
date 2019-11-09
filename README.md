@@ -18,8 +18,8 @@ This userscript is trying to minimize and block audio and visual advertisement o
 ![volume ui](https://i.imgur.com/TmkQ3QT.png "volume ui")
 
 * Download button for the current playing track.
-* Play previous track button (DI only).
-* Skip current track button (DI only).
+* Play previous track button.
+* Skip current track button.
 * Allowing to manually seek a specific position while playing a track (aka timeline scrubbing).
 
 ![player UI features](https://i.imgur.com/yuIvdoX.png "player UI features")
