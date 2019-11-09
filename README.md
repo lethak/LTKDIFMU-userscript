@@ -26,15 +26,16 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ## Compatible webradios
 
-DIUserscript is totally or partially functional on 5 known websites so far, consult the [complete list here](https://www.audioaddict.com).
+DIUserscript is totally or partially functional on 5 known websites so far, consult the [official list here](https://www.audioaddict.com).
 
 * https://di.fm
 * https://classicalradio.com
 * https://radiotunes.com
 * https://jazzradio.com
 * https://rockradio.com
+* https://www.zenradio.com (new)
 
-As a fan of Digital, Classical, Jazz and Rock music, I can listen to those web radio without interruption
+As a fan of Digital, Classical, Zen, Jazz and Rock music, I can listen to those web radio without interruption
 
 ## Installation
 
@@ -59,7 +60,7 @@ Direct link to the userscript: https://github.com/lethak/LTKDIFMU-userscript/raw
 
 The userscript is setup to be auto-updated via metadata-block [[1]](https://wiki.greasespot.net/Metadata_Block)[[2]](https://tampermonkey.net/documentation.php#_updateURL).
 
-Nothing to be done beside asking tampermonkey or greasemonkey to check for updates; or wait for/setup them to do it automatically.
+Nothing to be done by default. Just make sure your script manager checks for updates or setup it to do it automatically.
 
 
 ## Versioning
