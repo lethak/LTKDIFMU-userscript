@@ -13,13 +13,15 @@ This userscript is trying to minimize and block audio and visual advertisement o
 
 ### Audio Player
 * Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
+* Play any track from its hero page (di-only).
+* Play any track from the "previous track" history list.
 * Numeric volume input control for precise tuning. 
 
 ![volume ui](https://i.imgur.com/TmkQ3QT.png "volume ui")
 
-* Download button for the current playing track.
+* Download button for the playing track.
 * Play previous track button.
-* Skip current track button.
+* Skip current track button with unlimited use.
 * Allowing to manually seek a specific position while playing a track (aka timeline scrubbing).
 
 ![player UI features](https://i.imgur.com/yuIvdoX.png "player UI features")
@@ -56,11 +58,13 @@ Direct link to the userscript: https://github.com/lethak/LTKDIFMU-userscript/raw
 
 > Read the dedicated [troubleshooting page](./doc/troubleshooting.md).
 
-#### Update
+### Update
+
+Nothing to be done by default.
 
 The userscript is setup to be auto-updated via metadata-block [[1]](https://wiki.greasespot.net/Metadata_Block)[[2]](https://tampermonkey.net/documentation.php#_updateURL).
 
-Nothing to be done by default. Just make sure your script manager checks for updates or setup it to do it automatically.
+Just make sure your script manager checks for updates or setup it to do it automatically.
 
 
 ## Versioning
