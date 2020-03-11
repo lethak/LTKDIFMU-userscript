@@ -1,30 +1,42 @@
 # DIUserscript
 
-This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios powered by the AudioAddict platform.
+This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios powered by the AudioAddict platform, 
+while improving user experience and comfort of use of many features.
 
 ## Features
 
 ### Ads:
 * Prevents **all** automated ads to play, bypassing them completely.
 * Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
-* Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages. (If you want to upgrade you still can click on "Free Listener" while logged in)
-* Confusing the anti-AdBlocker system, so you can enjoy the music with your favorite ad-blocker enabled.
+* Removing most over-intrusive "premium" ad menu entry, popup, banners and panels on all pages.
+* Enjoy the music with your favorite ad-blocker enabled ! jamming the anti-AdBlocker system.
 * Disabling as many unsolicited, under the hood tracking as possible. (ex: Facebook, Triton, Bing, Adwords)
 
 ### Audio Player
 * Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
-* Play any track from its hero page (di-only).
-* Play any track from the "previous track" history list.
-* Numeric volume input control for precise tuning. 
+* Numeric volume input control for precise tuning.
 
-![volume ui](https://i.imgur.com/TmkQ3QT.png "volume ui")
+![volume ui](https://i.imgur.com/AvLaa0T.png "volume UI")
 
 * Download button for the playing track.
 * Play previous track button.
 * Skip current track button with unlimited use.
 * Allowing to manually seek a specific position while playing a track (aka timeline scrubbing).
 
-![player UI features](https://i.imgur.com/yuIvdoX.png "player UI features")
+![player UI features](https://i.imgur.com/G4Ite25.png "player UI features")
+
+* Play any track from the "previous track" history list.
+
+![track ui](https://i.imgur.com/d5Cx1LT.png "Track UI") ![track ui](https://i.imgur.com/hpA3Oel.png "Track UI")
+
+* Play any track from its hero page (di-only).
+
+![track ui](https://i.imgur.com/nIFodnW.png "Track UI")
+
+
+* Play your "Likes" as a playlist (di-only).
+
+![likes ui](https://i.imgur.com/3zfCaqM.png "Likes UI")
 
 ## Compatible webradios
 
@@ -73,6 +85,12 @@ Each public version of the script is released as a tag with the following format
 
 > YEAR.MONTH.build number for the month
 
+
+## Join Discord !
+
+Our new community discord can be accessed here: https://discord.gg/sjGQ7YU
+
+You can use it to say hi or discuss whatever you want with us, and follow releases thanks to github-to-discord hooks.
 
 ## Still polluted by ads ? missing a feature ?
 
