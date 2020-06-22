@@ -16,7 +16,7 @@
 // @icon https://i.imgur.com/vhn9FD6.png
 // @noframes 
 // @inject-into page
-// @grant none
+// @grant GM_download
 // @run-at document-start
-// @version 2020.3.429
+// @version 2020.6.14
 // ==/UserScript==

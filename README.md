@@ -14,6 +14,7 @@ while improving user experience and comfort of use of many features.
 
 ### Audio Player
 * Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
+* Slowly ease up the volume when playing for the first time in the session.
 * Numeric volume input control for precise tuning.
 
 ![volume ui](https://i.imgur.com/AvLaa0T.png "volume UI")
