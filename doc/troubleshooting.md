@@ -1,7 +1,12 @@
 # Troubleshooting
 
-* Sometimes, chrome and firefox will disable tampermonkey or greasemonkey  for some reasons.
+* Sometimes, chrome and firefox will disable tampermonkey or my userscript manager for some reasons.
 * Please make sure they are installed and enabled before opening any issue here.
+
+## Mobile/Tablet
+* I have not managed to make the script work on mobile or tablet. If you have any clue on how to do it, please create a new issue detailing a solution or giving ideas.
+* An issue #44 exists to follow the current state of this topic.
+
 
 ## The script is active but some features are not working
 * Some features are only working with an account. This script must run with an account for all features to work best.
@@ -18,12 +23,21 @@ a reload might be necessary for things to run smoothly without any bad side effe
 * It is not possible to make it work this way without a proper, legitimate premium account. (or if it is, I won't bother dealing with this)
 * From issue #22
 
+## Troubles using exotic browsers and script manager
+* Other browsers such as Vivaldi (#34) and script manager such as ViolentMonkey (#36) might have issues but might also work in some capacity. 
+* Even if thoughts are put into making it widely generic and cross platform, this script is intended to work and be tested with Tampermonkey for Chrome or Firefox.
+
+## I cannot click on the Seek Bar to play the track at a different position
+* This is not always the case and may appear to work at random. Workaround exists by dragging the cursor instead of clicking the position, or to click play/pause multiple times before clicking the position again.
+* From issue #41
+
 ## The use of this Userscript created some errors, what can I do ?
 
 * Read our [Disclaimer page](./disclaimer.md).
 * Check this current page for informations already existing regarding your issue.
 * Browse the Issue section of the repository to look for some issues already related to your problem.
-* You always can open a new GitHib Issue on this repository to kindly ask for help. 
+* You always can open a new GitHib Issue on this repository to kindly ask for help.
+* Not every error is actually impacting the features. (issue #23)
 
 ## (old) A warning message keeps telling me to update the script
 
@@ -36,7 +50,7 @@ a reload might be necessary for things to run smoothly without any bad side effe
 
 - - -
 
-## Weird behavior and doublons
+## (old) Weird behavior and doublons
 
 - - - 
 
@@ -47,10 +61,7 @@ a reload might be necessary for things to run smoothly without any bad side effe
 
 - - -
 
-## Mobile/Tablet
-I have not managed to make the script work on mobile or tablet. If you have any clue on how to do it, please create a new issue detailing a solution.
-
-## Greasemonkey and Firefox Quantum
+## (old) Greasemonkey and Firefox Quantum
 For [greasemonkey](https://addons.mozilla.org/en-gb/firefox/addon/greasemonkey/) users, the script is having troubles with Firefox since the "Quantum" update (version >= 57), this is why the latest version of  [tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) is now recommended for all browsers.
 
 Compatibility:

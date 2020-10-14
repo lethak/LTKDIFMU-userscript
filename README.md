@@ -5,6 +5,8 @@ while improving user experience and comfort of use of many features.
 
 ## Features
 
+* Toggleable features (ON / OFF).
+
 ### Ads:
 * Prevents **all** automated ads to play, bypassing them completely.
 * Auto mute whenever an ad is playing, auto unmute when finished (just in case !).
@@ -38,6 +40,10 @@ while improving user experience and comfort of use of many features.
 * Play your "Likes" as a playlist (di-only).
 
 ![likes ui](https://i.imgur.com/3zfCaqM.png "Likes UI")
+
+* Support for browser's Global Media Controls.
+
+![likes ui](https://i.imgur.com/SG3lYkP.png "Support for browser's Global Media Controls")
 
 ## Compatible webradios
 
