@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name DIUserscript for AudioAddict platforms
+// @name (Greasy Forks) DIUserscript for AudioAddict platforms
 // @namespace LTKDIFMU
 // @author LethaK Maas
 // @license WTFPL
@@ -20,7 +20,7 @@
 // @downloadURL https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js
 // @updateURL https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.meta.js
 // @icon https://i.imgur.com/vhn9FD6.png
-// @noframes 
+// @noframes
 // @grant GM_info
 // @grant GM_listValues
 // @grant GM_deleteValue
@@ -31,5 +31,13 @@
 // @grant GM_download
 // @inject-into page
 // @run-at document-start
-// @version 2022.2.4
+// @version 2021.0.0
 // ==/UserScript==
+var readmeUrl = 'https://github.com/lethak/LTKDIFMU-userscript/tree/live/doc/greasyforks/README.md';
+var gfMessage = '<strong>DIUserscript</strong>: You installed LTKDIFMU-userscript using Greasy Forks which is an old site with limits preventing us to deploy our fully packaged modern script. <strong>Therefore, you need to re-install it from our github to enjoy the features. <a href="'+readmeUrl+'">CLICK HERE</a></strong>';
+setInterval( function() {
+  if (di && di.app && di.app.commands) {
+    di.app.commands.execute('message:warn:persistent', gfMessage);
+  }
+}, 1000)
+console.error(gfMessage, { readmeUrl: readmeUrl });

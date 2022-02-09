@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name DIUserscript for AudioAddict platforms
+// @name (Greasy Forks) DIUserscript for AudioAddict platforms
 // @namespace LTKDIFMU
 // @author LethaK Maas
 // @license WTFPL
@@ -20,7 +20,7 @@
 // @downloadURL https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.user.js
 // @updateURL https://raw.githubusercontent.com/lethak/LTKDIFMU-userscript/live/DIUserscript.meta.js
 // @icon https://i.imgur.com/vhn9FD6.png
-// @noframes 
+// @noframes
 // @grant GM_info
 // @grant GM_listValues
 // @grant GM_deleteValue
@@ -31,5 +31,5 @@
 // @grant GM_download
 // @inject-into page
 // @run-at document-start
-// @version 2022.2.4
+// @version 2021.0.0
 // ==/UserScript==
