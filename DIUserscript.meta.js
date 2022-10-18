@@ -31,5 +31,5 @@
 // @grant GM_download
 // @inject-into page
 // @run-at document-start
-// @version 2022.2.4
+// @version 2022.10.47
 // ==/UserScript==
