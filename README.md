@@ -1,6 +1,6 @@
 # DIUserscript
 
-This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios powered by the AudioAddict platform, 
+This userscript is trying to minimize and block audio and visual advertisement on all the websites and radios powered by the AudioAddict platform,
 while improving user experience and comfort of use of many features.
 
 ## Features
@@ -15,6 +15,7 @@ while improving user experience and comfort of use of many features.
 * Disabling as many unsolicited, under the hood tracking as possible. (ex: Facebook, Triton, Bing, Adwords)
 
 ### Audio Player
+* Unlock cosmetic lock state for Free Listeners
 * Confusing the anti-AFK system, so you can let the music run for hours without any human interaction.
 * Slowly ease up the volume when playing for the first time in the session.
 * Numeric volume input control for precise tuning.
@@ -54,7 +55,7 @@ DIUserscript is totally or partially functional on 5 known websites so far, cons
 * https://radiotunes.com
 * https://jazzradio.com
 * https://rockradio.com
-* https://www.zenradio.com (new)
+* https://www.zenradio.com
 
 As a fan of Digital, Classical, Zen, Jazz and Rock music, I can listen to those web radio without interruption
 
@@ -71,7 +72,7 @@ Load the [userscript](https://github.com/lethak/LTKDIFMU-userscript/raw/live/DIU
 * [Tampermonkey for Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 * [Tampermonkey for Firefox](https://addons.mozilla.org/fr/firefox/addon/tampermonkey/).
 
-For using greasemonkey over tampermonkey, please read the [troubleshooting](./doc/troubleshooting.md) section. 
+For using greasemonkey over tampermonkey, please read the [troubleshooting](./doc/troubleshooting.md) section.
 
 Direct link to the userscript: https://github.com/lethak/LTKDIFMU-userscript/raw/live/DIUserscript.user.js
 
