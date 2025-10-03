@@ -29,8 +29,8 @@
 // @grant GM_addValueChangeListener
 // @grant GM_removeValueChangeListener
 // @grant GM_download
-// @grant fetch
+// @grant GM_xmlhttpRequest
 // @inject-into page
 // @run-at document-start
-// @version 2025.10.105
+// @version 2025.10.106
 // ==/UserScript==
