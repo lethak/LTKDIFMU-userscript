@@ -29,7 +29,8 @@
 // @grant GM_addValueChangeListener
 // @grant GM_removeValueChangeListener
 // @grant GM_download
+// @grant fetch
 // @inject-into page
 // @run-at document-start
-// @version 2025.4.94
+// @version 2025.10.105
 // ==/UserScript==
