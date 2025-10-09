@@ -32,5 +32,5 @@
 // @grant GM_xmlhttpRequest
 // @inject-into page
 // @run-at document-start
-// @version 2025.10.106
+// @version 2025.10.471
 // ==/UserScript==
