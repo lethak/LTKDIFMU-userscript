@@ -38,7 +38,8 @@ while improving user experience and comfort of use of many features.
 ![track ui](https://i.imgur.com/nIFodnW.png "Track UI")
 
 
-* Play your "Likes" as a playlist (di-only).
+* Play your "Likes" as a playlist.
+* Import / Export your favorites between accounts.
 
 ![likes ui](https://i.imgur.com/3zfCaqM.png "Likes UI")
 
@@ -96,7 +97,7 @@ Each public version of the script is released as a tag with the following format
 
 ## Join Discord !
 
-Our new community discord can be accessed here: https://discord.gg/sjGQ7YU
+Our discord can be accessed here: https://discord.gg/sjGQ7YU
 
 You can use it to say hi or discuss whatever you want with us, and follow releases thanks to github-to-discord hooks.
 

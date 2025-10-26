@@ -16,13 +16,13 @@ This Userscript works by adding custom-tailored client-side javascript upon brow
 
 This code only executes on the browser and is mostly applying new elements to the page (for added features), and filtering others (for ads & premium banners).
 
-The code also uses the platform's plublic Event API to hook into the system to better learn how and when to apply filters or add new elements on the page. 
+The code also uses the platform's plublic Event API to hook into the system to better learn how and when to apply filters or add new elements on the page.
 
 ### The use of this Userscript created some errors, what can I do ?
 
-First, by using this userscript (or close enough forks) you agree than this is experimental, and not a commercial service provided to you.
+First, by using this userscript (or close enough forks) you agree this is experimental, and not a commercial service provided to you.
 
-But still, volunteers can look into it and try to help ! You always can open a new GitHib Issue on this repository to kindly ask for help. 
+But still, volunteers can look into it and try to help ! You always can open a new GitHib Issue on this repository to kindly ask for help.
 
 ### What is the intended audience of this Userscript ?
 
