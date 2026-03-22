@@ -1,5 +1,10 @@
 # Troubleshooting
 
+## Disliked tracks are playing when connected to my free account with expired audio rights
+* The script is doing a great job at making audio work as seamlessly as possible at any given time and under any situation, but using a free account with expired audio rights is bound to unravel some unhandled situation like this one where the player is loading disliked audio tracks.
+* It is not a fixable issue but a workaround exists: you should create a new account and use the export/import of likes and dislikes to transfer over your new account. If you always use the script, free audio rights should not expire with the new account.
+* From issue #86
+
 ## Sometimes, chrome and firefox will disable tampermonkey or my userscript manager for some reasons.
 * Please make sure they are installed and enabled before opening any issue here.
 * Before reporting a problem with chromium, enable developer mode in extensions and Tampermonkey : [issue #81](https://github.com/lethak/LTKDIFMU-userscript/issues/81)
